@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Lista de Dittos</h1>
+    <img  id="pokemon"></img>
+    <img id="pokemon2"></img>
+
+    <script>
+        const url = 'https://pokeapi.co/api/v2/pokemon/ditto'; 
+        const ur = 'https://pokeapi.co/api/v2/pokemon/pikachu'; 
+
+        fetch(url) 
+            .then(response => response.json()) 
+            .then(dados => { 
+                document.getElementById("pokemon"). src = dados.sprites.front_default; 
+            }) 
+
+        fetch(ur) 
+            .then(response => response.json()) 
+            .then(dados => { 
+                document.getElementById("pokemon2"). src = dados.sprites.front_default; 
+            })  
+    </script>
+</body>
+</html>
