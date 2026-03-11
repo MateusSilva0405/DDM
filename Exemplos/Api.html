@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Lista de Usuários</h1>
+    <ul id="lista"></ul>
+
+    <script>
+        const url = 'https://jsonplaceholder.typicode.com/users'; // local onde a url fica armazenada (é chamada)
+
+        fetch(url) // faz a requisição do caminho (da url)
+            .then(response => response.json()) // o retorno dessa requisição vem no tipo formatado "json"
+            .then(dados => { // a gente salva como se fosse uma variavel chamada "dados"
+                const lista = document.getElementById("lista"); // nesse documento, está procurando o elemento que tem o id "lista"
+
+                dados.forEach(usuario => { // é como m laço de repetição que fica funcionando para cada elemento na variavel "dados"
+                    const item = document.createElement("li"); // cria no html um item li para cada usuário
+                    item.textContent = usuario.name; // dentro do li vai ser o usuario.name (lá da API)
+                    lista.appendChild(item); // pega a lista e coloca um elemento filho 
+                }); 
+            })
+            .catch(error => { // como se fosse um erro que avisa caso tenha dado algum erro (como se fosse um else)
+                console.error("Erro ao buscar os dados:", error);
+            })
+    </script>
+</body>
+</html>
