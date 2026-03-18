@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="cep" placeholder="01001000">
+    <button onclick="buscar()">Buscar CEP</button>
+
+    <pre id="out"></pre>
+    <script>
+        async function buscar() {
+            const cep = document.getElementById('cep').value.replace(/\D/g,'');
+            const url = `https://viacep.com.br/ws/${cep}/json/`;
+            const r = await fetch(url);
+            const dados = await r.json();
+            document.getElementById('out').textContent =
+                dados.erro ? 'CEP não encontrado' : JSON.stringify(dados, null, 2);
+        }
+
+    </script>
+</body>
+</html>
